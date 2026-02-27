@@ -23,8 +23,8 @@ export interface GetaUpdatePayload {
   name: string;
   mobile_phone_number: string;
   email: string;
-  referral_code?: string;
-  have_you_applied_through_an_agent_?: string;
+  // referral_code?: string;
+  // have_you_applied_through_an_agent_?: string;
   program_of_interest?: string;
   which_grade_are_you_currently_in_?: string;
 }
