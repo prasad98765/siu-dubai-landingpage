@@ -116,22 +116,22 @@ export const uaeAdmissionsSchema = z
 
     program: z.string().min(1, "Please select a program"),
 
-    appliedViaAgent: z.enum(["yes", "no"], {
-      error: "Please select an option",
-    }),
+    // appliedViaAgent: z.enum(["yes", "no"], {
+    //   error: "Please select an option",
+    // }),
 
-    referralCode: z.string().optional(),
+    // referralCode: z.string().optional(),
   })
   .superRefine((data, ctx) => {
-    if (data.appliedViaAgent === "yes") {
-      if (!data.referralCode || data.referralCode.trim().length < 4) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ["referralCode"],
-          message: "Referral code must be at least 4 characters",
-        });
-      }
-    }
+    // if (data.appliedViaAgent === "yes") {
+    //   if (!data.referralCode || data.referralCode.trim().length < 4) {
+    //     ctx.addIssue({
+    //       code: z.ZodIssueCode.custom,
+    //       path: ["referralCode"],
+    //       message: "Referral code must be at least 4 characters",
+    //     });
+    //   }
+    // }
   });
 
 export type UaeAdmissionsData = z.infer<typeof uaeAdmissionsSchema>;

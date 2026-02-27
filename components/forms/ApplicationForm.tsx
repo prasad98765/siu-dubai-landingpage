@@ -91,8 +91,8 @@ export default function ApplicationForm() {
       phone: "",
       grade: undefined,
       program: "",
-      appliedViaAgent: undefined,
-      referralCode: "",
+        // appliedViaAgent: undefined,
+        // referralCode: "",
     },
   });
 
@@ -120,7 +120,7 @@ export default function ApplicationForm() {
 
   // Watch grade to rebuild program list; watch agent choice for conditional
   const selectedGrade        = useWatch({ control, name: "grade" });
-  const appliedViaAgent      = useWatch({ control, name: "appliedViaAgent" });
+  // const appliedViaAgent      = useWatch({ control, name: "appliedViaAgent" });
 
   // Reset program when grade changes
   useEffect(() => {
@@ -128,9 +128,9 @@ export default function ApplicationForm() {
   }, [selectedGrade, setValue]);
 
   // Clear referral code when agent = no
-  useEffect(() => {
-    if (appliedViaAgent === "no") setValue("referralCode", "");
-  }, [appliedViaAgent, setValue]);
+  // useEffect(() => {
+  //   if (appliedViaAgent === "no") setValue("referralCode", "");
+  // }, [appliedViaAgent, setValue]);
 
   const programOptions = selectedGrade
     ? PROGRAMS_BY_GRADE[selectedGrade as GradeOption]
@@ -143,8 +143,6 @@ export default function ApplicationForm() {
         name: `${data.firstName} ${data.lastName}`,
         mobile_phone_number: data.phone.replace(/\D/g, ""),
         email: data.email,
-        // referral_code: data.referralCode ?? "",
-        // have_you_applied_through_an_agent_: data.appliedViaAgent,
         program_of_interest: data.program,
         which_grade_are_you_currently_in_: data.grade,
       });
@@ -325,54 +323,7 @@ export default function ApplicationForm() {
             </div>
 
             {/* ── Section 3: Agent / Referral ──────────────────── */}
-            {/* <SectionHeading number={3} title="Agent &amp; Referral" className="mt-8" /> */}
-
-            {/* <div className="mt-5 space-y-5">
-
-              <Field label="Have you applied through an Agent?" required error={errors.appliedViaAgent?.message}>
-                <div className="flex items-center gap-6 h-11">
-                  {(["yes", "no"] as const).map((val) => (
-                    <label
-                      key={val}
-                      className="flex items-center gap-2.5 cursor-pointer group"
-                    >
-                      <input
-                        type="radio"
-                        value={val}
-                        className="w-4 h-4 accent-[#8B0000] cursor-pointer"
-                        {...register("appliedViaAgent")}
-                      />
-                      <span className="text-sm text-gray-700 font-medium capitalize group-hover:text-[#8B0000] transition-colors">
-                        {val === "yes" ? "Yes" : "No"}
-                      </span>
-                    </label>
-                  ))}
-                </div>
-              </Field>
-
-              <AnimatePresence>
-                {appliedViaAgent === "yes" && (
-                  <motion.div
-                    key="referral"
-                    initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                    animate={{ opacity: 1, height: "auto", marginTop: 20 }}
-                    exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                    transition={{ duration: 0.25 }}
-                    className="overflow-hidden"
-                  >
-                    <Field label="Referral Code" required error={errors.referralCode?.message}>
-                      <div className="sm:max-w-xs">
-                        <input
-                          className={errors.referralCode ? errorInputCls : inputCls}
-                          placeholder="Enter your agent's referral code"
-                          {...register("referralCode")}
-                        />
-                      </div>
-                    </Field>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div> */}
+            {/* Agent & Referral section removed as requested */}
 
             {/* ── Submit ───────────────────────────────────────── */}
             <div className="mt-8 flex flex-col sm:flex-row items-center gap-4">
