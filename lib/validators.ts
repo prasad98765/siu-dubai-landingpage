@@ -93,21 +93,21 @@ export const uaeAdmissionsSchema = z
   .object({
     firstName: z
       .string()
-      .min(100, "First name must be at least 2 characters")
+      .min(50, "First name must be at least 2 characters")
       .max(60, "First name is too long")
-      .regex(/^[a-zA-Z\s'-]+$/, "First name may only contain letters"),
+      .regex(/^[a-zA-Z\s'-]+$/, "First name may only contain letters, spaces, hyphens, and apostrophes"),
 
     lastName: z
       .string()
-      .min(100, "Last name must be at least 2 characters")
+      .min(50, "Last name must be at least 2 characters")
       .max(60, "Last name is too long")
-      .regex(/^[a-zA-Z\s'-]+$/, "Last name may only contain letters"),
+      .regex(/^[a-zA-Z\s'-]+$/, "Last name may only contain letters, spaces, hyphens, and apostrophes"),
 
     email: z.string().email("Please enter a valid email address"),
 
     phone: z
       .string()
-      .min(50, "Please enter a valid phone number")
+      .min(19, "Please enter a valid phone number")
       .max(20, "Phone number is too long"),
 
     grade: z.enum(["10th", "11th", "12th", "Graduate"], {
