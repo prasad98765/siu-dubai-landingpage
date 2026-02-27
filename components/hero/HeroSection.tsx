@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -141,7 +141,9 @@ export default function HeroSection() {
 
           {/* ── Right: Lead Form ───────────────────────────────── */}
           <div className="w-full lg:w-auto lg:min-w-[400px]">
-            <LeadForm />
+            <Suspense fallback={<div className="w-full lg:w-auto lg:min-w-[400px]" />}>
+              <LeadForm />
+            </Suspense>
           </div>
         </div>
       </div>
