@@ -325,7 +325,7 @@ export default function ApplicationForm() {
             </div>
 
             {/* ── Section 3: Agent / Referral ──────────────────── */}
-            <SectionHeading number={3} title="Agent &amp; Referral" className="mt-8" />
+            {/* <SectionHeading number={3} title="Agent &amp; Referral" className="mt-8" /> */}
 
             {/* <div className="mt-5 space-y-5">
 
