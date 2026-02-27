@@ -143,8 +143,8 @@ export default function ApplicationForm() {
         name: `${data.firstName} ${data.lastName}`,
         mobile_phone_number: data.phone.replace(/\D/g, ""),
         email: data.email,
-        referral_code: data.referralCode ?? "",
-        have_you_applied_through_an_agent_: data.appliedViaAgent,
+        // referral_code: data.referralCode ?? "",
+        // have_you_applied_through_an_agent_: data.appliedViaAgent,
         program_of_interest: data.program,
         which_grade_are_you_currently_in_: data.grade,
       });
@@ -327,9 +327,8 @@ export default function ApplicationForm() {
             {/* ── Section 3: Agent / Referral ──────────────────── */}
             <SectionHeading number={3} title="Agent &amp; Referral" className="mt-8" />
 
-            <div className="mt-5 space-y-5">
+            {/* <div className="mt-5 space-y-5">
 
-              {/* Applied via Agent – radio group */}
               <Field label="Have you applied through an Agent?" required error={errors.appliedViaAgent?.message}>
                 <div className="flex items-center gap-6 h-11">
                   {(["yes", "no"] as const).map((val) => (
@@ -351,7 +350,6 @@ export default function ApplicationForm() {
                 </div>
               </Field>
 
-              {/* Referral Code – animated conditional */}
               <AnimatePresence>
                 {appliedViaAgent === "yes" && (
                   <motion.div
@@ -374,7 +372,7 @@ export default function ApplicationForm() {
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
+            </div> */}
 
             {/* ── Submit ───────────────────────────────────────── */}
             <div className="mt-8 flex flex-col sm:flex-row items-center gap-4">
