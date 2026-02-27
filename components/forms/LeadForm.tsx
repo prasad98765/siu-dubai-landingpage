@@ -10,6 +10,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { leadFormSchema, type LeadFormData } from "@/lib/validators";
 import { submitToGeta } from "@/lib/geta";
+import { useSearchParams } from "next/navigation";
 
 /** Shared input class — matches height & border of PhoneInput and Select */
 const inputClass =
@@ -55,6 +56,7 @@ function Field({
  */
 export default function LeadForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [apiStatus, setApiStatus] = useState<"idle" | "success" | "error">("idle");
 
@@ -77,10 +79,18 @@ export default function LeadForm() {
     setIsSubmitting(true);
     setApiStatus("idle");
 
+    // Extract UTM params from URL
+    const utm_source = searchParams.get("utm_source") || undefined;
+    const utm_medium = searchParams.get("utm_medium") || undefined;
+    const utm_campaign = searchParams.get("utm_campaign") || undefined;
+
     const result = await submitToGeta({
       name: data.fullName,
       mobile_phone_number: data.phone.replace(/\D/g, ""),
       email: data.email,
+      utm_source,
+      utm_medium,
+      utm_campaign,
     });
 
     // Build query string so ApplicationForm can pre-fill without sessionStorage
@@ -88,6 +98,9 @@ export default function LeadForm() {
       name:  data.fullName,
       email: data.email,
       phone: data.phone,
+      ...(utm_source ? { utm_source } : {}),
+      ...(utm_medium ? { utm_medium } : {}),
+      ...(utm_campaign ? { utm_campaign } : {}),
     });
     const applyUrl = `/apply?${params.toString()}`;
 
@@ -98,7 +111,6 @@ export default function LeadForm() {
       setApiStatus("error");
       setTimeout(() => router.push(applyUrl), 2500);
     }
-
     setIsSubmitting(false);
   };
 

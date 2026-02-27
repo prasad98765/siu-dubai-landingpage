@@ -17,6 +17,9 @@ export interface GetaPayload {
   name: string;
   mobile_phone_number: string; // digits only, e.g. "971501234567"
   email: string;
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
 }
 
 export interface GetaUpdatePayload {
@@ -27,6 +30,7 @@ export interface GetaUpdatePayload {
   // have_you_applied_through_an_agent_?: string;
   program_of_interest?: string;
   which_grade_are_you_currently_in_?: string;
+  
 }
 
 export interface GetaResult {
